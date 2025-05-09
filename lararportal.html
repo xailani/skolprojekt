@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lärarportal</title>
+  <link rel="stylesheet" href="lararportal.css" />
+</head>
+<body>
+  <header>
+    <div class="title">Lärarportal</div>
+    <div class="header-right">
+      <span>Inloggad som: Lärare</span>
+      <button class="logout-btn" onclick="logout()">Logga ut</button>
+    </div>
+  </header>
+ 
+  <main>
+    <section class="grading-section">
+      <div class="section-header">
+        <h2>Betygssättning</h2>
+        <button class="schema-btn" onclick="openSchedule()">📅 Visa schema</button>
+      </div>
+
+      <div class="grading-form">
+        <select id="student-select">
+          <option selected disabled>Välj elev</option>
+          <!-- 15 elever -->
+          <option>Sara Norén</option>
+          <option>Ushindi Isaac Bauma</option>
+          <option>Alexander Larsson</option>
+          <option>Kamyar Xailani</option>
+          <option>Marcus Rydell</option>
+          <option>Darin Twana</option>
+          <option>Simon Caryll</option>
+          <option>Enlil Haddad</option>
+          <option>Stefan Horn</option>
+          <option>Karl Cederlöf</option>
+          <option>Morgan Emet</option>
+          <option>Mattias nilsson</option>
+          <option>Max Jokela</option>
+          <option>Oliver Ullbrand</option>
+          <option>Johan Carlson</option>
+        </select>
+ 
+        <select id="course-select">
+          <option selected disabled>Välj kurs</option>
+          <option>Molntjänster</option>
+          <option>Matte</option>
+          <option>C++</option>
+          <option>Cybersäkerhet</option>
+          <option>Nätverksteknik</option>
+          <option>EL-lära</option>
+        </select>
+ 
+        <div class="grades">
+          <button class="grade-btn" onclick="selectGrade('IG')">IG</button>
+          <button class="grade-btn" onclick="selectGrade('G')">G</button>
+          <button class="grade-btn" onclick="selectGrade('VG')">VG</button>
+        </div>
+ 
+        <input type="text" placeholder="Skriv kommentarer här..." class="comment-box" id="comment-box"/>
+ 
+        <button class="save-btn" onclick="saveGrade()">Spara betyg</button>
+      </div>
+ 
+      <hr />
+ 
+      <h3>Senaste betygen</h3>
+      <table id="grades-table">
+        <thead>
+          <tr>
+            <th>Elev</th>
+            <th>Kurs</th>
+            <th>Betyg</th>
+            <th>Kommentarer</th>
+            <th>Datum</th>
+            <th>Redigera</th>
+            <th>Ta bort</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamiskt fylld med JavaScript -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script>
+    // Logout funktion för att återvända till index.html
+    function logout() {
+      window.location.href = "index.html"; // Återgå till startsidan
+    }
+
+    // Funktion för att öppna schema i nytt fönster
+    function openSchedule() {
+      window.open('https://web.skola24.se/timetable/timetable-viewer/arboga.skola24.se/H%C3%B6gskolecentrum/', '_blank');
+    }
+
+    // Funktion för att markera den valda betygsknappen
+    function selectGrade(grade) {
+      const gradeButtons = document.querySelectorAll('.grade-btn');
+      gradeButtons.forEach(button => {
+        button.classList.remove('selected'); // Ta bort 'selected' från alla knappar
+      });
+      const selectedButton = [...gradeButtons].find(button => button.textContent === grade);
+      if (selectedButton) {
+        selectedButton.classList.add('selected'); // Lägg till 'selected' på den valda knappen
+      }
+    }
+
+    // Funktion för att spara betyg och visa i tabellen
+    function saveGrade() {
+      const student = document.getElementById('student-select').value;
+      const course = document.getElementById('course-select').value;
+      const gradeButton = document.querySelector('.grade-btn.selected');
+      const grade = gradeButton ? gradeButton.textContent : '';
+      const comment = document.getElementById('comment-box').value;
+
+      if (student && course && grade) {
+        const date = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
+        const table = document.getElementById('grades-table').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow(0); // Lägg till nya betyget högst upp i tabellen
+        
+        // Lägg till data-attribut för mobilvyn
+        newRow.innerHTML = `<td data-column="Elev">${student}</td>
+                            <td data-column="Kurs">${course}</td>
+                            <td data-column="Betyg">${grade}</td>
+                            <td data-column="Kommentarer">${comment}</td>
+                            <td data-column="Datum">${date}</td>
+                            <td data-column="Redigera"><button class="edit-btn" onclick="editGrade(this)">✏️</button></td>
+                            <td data-column="Ta bort"><button class="delete-btn" onclick="deleteRow(this)">🗑️</button></td>`;
+
+        // Rensa formulärfält efter sparande
+        document.getElementById('student-select').selectedIndex = 0;
+        document.getElementById('course-select').selectedIndex = 0;
+        document.getElementById('comment-box').value = '';
+        document.querySelectorAll('.grade-btn').forEach(button => button.classList.remove('selected')); // Ta bort all selektion
+      } else {
+        alert("Fyll i alla fält innan du sparar betyget!");
+      }
+    }
+
+    // Funktion för att redigera betygsraden
+    function editGrade(button) {
+      const row = button.closest('tr');
+      const cells = row.querySelectorAll('td');
+      
+      // Gör cellerna redigerbara
+      cells.forEach(cell => {
+        if (cell.hasAttribute('data-column') && 
+            !cell.getAttribute('data-column').includes('Redigera') && 
+            !cell.getAttribute('data-column').includes('Ta bort')) {
+          const currentValue = cell.textContent;
+          const column = cell.getAttribute('data-column');
+          
+          if (column === "Betyg") {
+            const select = document.createElement("select");
+            ["IG", "G", "VG"].forEach(grade => {
+              const option = document.createElement("option");
+              option.value = grade;
+              option.textContent = grade;
+              if (grade === currentValue) option.selected = true;
+              select.appendChild(option);
+            });
+            cell.innerHTML = '';
+            cell.appendChild(select);
+          } else if (column === "Elev" || column === "Kurs") {
+            const input = document.createElement("input");
+            input.type = "text";
+            input.value = currentValue;
+            input.style.width = "100%";
+            cell.innerHTML = '';
+            cell.appendChild(input);
+          } else if (column === "Kommentarer") {
+            const input = document.createElement("input");
+            input.type = "text";
+            input.value = currentValue;
+            input.style.width = "100%";
+            cell.innerHTML = '';
+            cell.appendChild(input);
+          }
+        }
+      });
+
+      // Byt ut redigeringsknappen mot en spara-knapp
+      button.textContent = '💾';
+      button.setAttribute('onclick', 'saveEdit(this)');
+    }
+
+    // Funktion för att spara redigerad betygsrad
+    function saveEdit(button) {
+      const row = button.closest('tr');
+      const cells = row.querySelectorAll('td');
+
+      cells.forEach(cell => {
+        if (cell.hasAttribute('data-column') && 
+            !cell.getAttribute('data-column').includes('Redigera') && 
+            !cell.getAttribute('data-column').includes('Ta bort')) {
+          const input = cell.querySelector('input') || cell.querySelector('select');
+          if (input) {
+            cell.textContent = input.value;
+          }
+        }
+      });
+
+      // Byt tillbaka till redigeringsknapp
+      button.textContent = '✏️';
+      button.setAttribute('onclick', 'editGrade(this)');
+    }
+
+    // Funktion för att ta bort betygsrad
+    function deleteRow(button) {
+      const row = button.closest('tr');
+      row.remove(); // Tar bort hela raden från tabellen
+    }
+  </script>
+</body>
+</html>

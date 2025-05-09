@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <!-- Meta-taggar och titel för dokumentet -->
+  <meta charset="UTF-8">
+  <title>Välj Profil</title>
+  <!-- Länk till extern CSS-fil för styling -->
+  <link rel="stylesheet" href="index.css">
+</head>
+<!-- Body-element med specifik bakgrundsklass för startsidan -->
+<body class="background-index">
+
+  <!-- Logotyp-container med länk tillbaka till startsidan -->
+  <div class="logo-container">
+    <a href="index.html" class="logo-link">
+      <img src="https://arboga.se/images/18.7a093a09185d2f4b3c791d8f/1675762304234/Arboga_vapen_krona_horisontell_svarttext_RGB.svg" alt="Arboga kommun" class="logo-img">
+    </a>
+  </div>
+  
+  <!-- Högskolecentrum logotyp -->
+  <div class="hogskolecentrum-logo">
+    <img src="https://i.postimg.cc/6TJqjWX8/loggan-for-hogskolecentrum.png" alt="HÖGSKOLECENTRUM VUXENUTBILDNING I ARBOGA">
+  </div>
+
+  <!-- Sidhuvud med hamburgermenyn -->
+  <header>
+    <!-- Hamburger-ikon som använder JavaScript för att visa/dölja menyn -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <!-- Dropdown-meny som visas när man klickar på hamburger-ikonen -->
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="omoss.html">Om oss</a>
+    </div>
+  </header>
+
+  <!-- Genomskinlig overlay som innehåller huvudinnehållet -->
+  <div class="overlay">
+    <div class="container">
+      <h1>Välj Profil</h1>
+      <!-- Container för profilkorten -->
+      <div class="profile-selection">
+        <!-- Lärarprofil-kort -->
+        <div class="profile-card">
+          <img src="https://cdn-icons-png.freepik.com/512/12105/12105247.png?ga=GA1.1.1101570084.1746368925" class="icon-big" alt="Lärare">
+          <p>Lärare</p>
+          <a href="larare.html" class="btn">Logga in</a>
+        </div>
+        <!-- Studentprofil-kort -->
+        <div class="profile-card">
+          <img src="https://cdn-icons-png.freepik.com/512/194/194931.png" class="icon-big" alt="Student">
+          <p>Student</p>
+          <a href="student.html" class="btn">Logga in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript för att hantera dropdown-menyn -->
+  <script>
+    // Funktion som visar eller döljer dropdown-menyn
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    }
+    </script>
+</body>
+</html>

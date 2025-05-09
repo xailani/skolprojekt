@@ -1,0 +1,320 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    background-color: #f0f4ff;/* Ljusblå bakgrund */
+    color: #333; /* Ändrad till mörkare textfärg för bättre läsbarhet på ljus bakgrund */
+}
+ 
+.header {
+    background-color: #3f51b5; /* Mörkblå header */
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+ 
+.header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+ 
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+ 
+.header-right span {
+    font-size: 0.9rem;
+}
+ 
+.header-right button {
+    background-color: #5c6bc0; /* Ljusare blå knapp */
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+ 
+.container {
+    max-width: 1200px;
+    margin: 80px auto 0;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    width: 95%;
+}
+ 
+.betygsattning {
+    position: relative; /* Gör containern till positioneringskontext för knappen */
+    margin-bottom: 2rem; /* Lägg till lite marginal under betygsättningssektionen */
+}
+ 
+.betygsattning h2 {
+    color: black;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    display: inline-block; /* För att knappen ska kunna positioneras i förhållande till rubriken */
+}
+ 
+.senaste-betygen h2 {
+    color: #555;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+ 
+.elev-kurs-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 1rem;
+}
+ 
+.form-group {
+    flex: 1;
+    max-width: 200px; /* Begränsar maxbredden på rutorna */
+}
+ 
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: #555;
+}
+ 
+.form-group input[type="text"],
+.form-group select {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+}
+ 
+.form-group input[type="text"]:disabled {
+    background-color: #eee;
+    color: #777;
+}
+ 
+#inloggad-namn {
+    background-color: #f5f5f5;
+}
+ 
+#kurs-val {
+    background-color: #f5f5f5;
+}
+ 
+.visa-schema-btn {
+    background-color: #059669;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+ 
+.visa-schema-btn svg {
+    fill: white;
+    width: 20px;
+    height: 20px;
+}
+ 
+.senaste-betygen table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+ 
+.senaste-betygen th,
+.senaste-betygen td {
+    text-align: left;
+    padding: 0.8rem;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.9rem;
+}
+ 
+.senaste-betygen th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+    color: #555;
+}
+ 
+.betyg-vg-cell {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+}
+ 
+.betyg-g-cell {
+    background-color: #fef3c7;
+    color: #92400e;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+}
+ 
+.betyg-ig-cell {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Responsiv design för mobila enheter */
+@media (max-width: 768px) {
+    .header {
+        padding: 1rem;
+        flex-direction: row; /* Behåll horizontal layout */
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .header h1 {
+        font-size: 1.3rem;
+    }
+    
+    .header-right {
+        display: flex;
+        flex-direction: row; /* Behåll horizontal layout */
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .header-right span {
+        font-size: 0.8rem;
+    }
+    
+    .header-right button {
+        width: auto;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .container {
+        padding: 1.5rem 1rem;
+        width: 100%;
+        border-radius: 0;
+        margin-top: 60px; /* Minska utrymmet för header */
+    }
+    
+    .betygsattning {
+        padding-top: 2.5rem; /* Utrymme för schema-knappen, lite minskat */
+    }
+    
+    .betygsattning h2 {
+        margin-bottom: 1rem;
+    }
+    
+    .visa-schema-btn {
+        position: absolute; /* Behåll absolut positionering */
+        top: 0;
+        right: 0;
+        width: auto; /* Låt bredden anpassa sig efter innehållet */
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .visa-schema-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .elev-kurs-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .form-group {
+        max-width: 100%;
+    }
+    
+    /* Förbättrad tabellhantering för mobila enheter */
+    .senaste-betygen table {
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    
+    .senaste-betygen td {
+        display: flex;
+        justify-content: space-between;
+        text-align: right;
+        padding: 0.6rem 0.8rem;
+        border-bottom: 1px solid #e5e7eb;
+        font-size: 0.9rem;
+    }
+    
+    .senaste-betygen td:before {
+        content: attr(data-column);
+        font-weight: bold;
+        text-align: left;
+        padding-right: 1rem;
+    }
+    
+    .senaste-betygen thead {
+        display: none; /* Dölj tabellrubriker på mobil */
+    }
+    
+    .senaste-betygen tr {
+        display: block;
+        margin-bottom: 1rem;
+        background-color: #fff;
+    }
+    
+    .senaste-betygen tbody {
+        display: block;
+    }
+    
+    .senaste-betygen td:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Ytterligare justeringar för ännu mindre skärmar */
+@media (max-width: 480px) {
+    .header {
+        padding: 0.8rem;
+    }
+    
+    .header h1 {
+        font-size: 1.2rem;
+    }
+    
+    .header-right span {
+        font-size: 0.7rem;
+    }
+    
+    .container {
+        padding: 1rem;
+        margin-top: 55px;
+    }
+    
+    .betygsattning h2,
+    .senaste-betygen h2 {
+        font-size: 1.2rem;
+    }
+}

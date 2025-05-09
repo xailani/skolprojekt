@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studentportal - Betygsättning</title>
+<link rel="stylesheet" href="studentportal.css">
+</head>
+<body>
+<div class="header">
+<h1>Studentportal</h1>
+<div class="header-right">
+<span>Inloggad som: Student</span>
+<button id="logoutBtn">Logga ut</button>
+</div>
+</div>
+ 
+<div class="container">
+<section class="betygsattning">
+<h2>Betygssättning</h2>
+<a href="https://web.skola24.se/timetable/timetable-viewer/arboga.skola24.se/H%C3%B6gskolecentrum/" class="visa-schema-btn" id="visaSchemaBtn" target="_blank">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+<path d="M19 3h-4V1h-2v2H8V1H6v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13zm-6-7h2v2h-2v-2zm4 0h2v2h-2v-2zm-8 0h2v2H6v-2zm-4 0h2v2H6v-2z"/>
+</svg>
+Visa schema
+</a>
+<div class="elev-kurs-container">
+<div class="form-group">
+<label for="inloggad-namn">Elev</label>
+<input type="text" id="inloggad-namn" value="Sara Norén" readonly>
+</div>
+<div class="form-group">
+<label for="kurs-val">Kurs</label>
+<select id="kurs-val">
+<option value="">Välj kurs</option>
+<option value="system-anvandarvanlighet">System- och användarvänlighet</option>
+<option value="molntjanster">Molntjänster</option>
+<option value="matematik">Matematik</option>
+<option value="databaser">Databaser</option>
+<option value="projektekonomi">Projektekonomi</option>
+<option value="arbetsmiljo-arbetsratt">Arbetsmiljö och arbetsrätt</option>
+<option value="programmering">Programmering</option>
+</select>
+</div>
+</div>
+</section>
+ 
+<section class="senaste-betygen">
+<h2>Senaste betygen</h2>
+<table id="senasteBetygenTable">
+<thead>
+<tr>
+<th>Kurs</th>
+<th>Betyg</th>
+<th>Kommentarer</th>
+<th>Datum</th>
+</tr>
+</thead>
+<tbody>
+<!-- Dynamiskt fylls med JavaScript -->
+</tbody>
+</table>
+</section>
+</div>
+ 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const logoutBtn = document.getElementById('logoutBtn');
+        const visaSchemaBtn = document.getElementById('visaSchemaBtn');
+        const kursValSelect = document.getElementById('kurs-val');
+        const senasteBetygenTableBody = document.getElementById('senasteBetygenTable').querySelector('tbody');
+        
+        // Betygsdata för varje kurs
+        const betygData = {
+            'system-anvandarvanlighet': [
+                { kurs: 'System- och användarvänlighet', betyg: 'VG', kommentar: 'Utmärkt förståelse för användbarhetsprinciper', datum: '2025-04-12' }
+            ],
+            'molntjanster': [
+                { kurs: 'Molntjänster', betyg: 'G', kommentar: 'God förståelse för molnbaserade tjänster', datum: '2025-03-22' }
+            ],
+            'matematik': [
+                { kurs: 'Matematik 1', betyg: 'VG', kommentar: 'Mycket bra problemlösningsförmåga', datum: '2025-02-15' },
+                { kurs: 'Matematik 2', betyg: 'G', kommentar: 'Genomgående godkänd nivå', datum: '2025-03-05' }
+            ],
+            'databaser': [
+                { kurs: 'Databaser', betyg: 'VG', kommentar: 'Utmärkt förståelse för databasdesign', datum: '2025-01-28' }
+            ],
+            'projektekonomi': [
+                { kurs: 'Projektekonomi', betyg: 'IG', kommentar: 'Behöver komplettera kursmoment', datum: '2025-04-18' }
+            ],
+            'arbetsmiljo-arbetsratt': [
+                { kurs: 'Arbetsmiljö och arbetsrätt', betyg: 'G', kommentar: 'Godkänd kunskap om arbetsrättsliga frågor', datum: '2025-03-10' }
+            ],
+            'programmering': [
+                { kurs: 'Programmering grundkurs', betyg: 'VG', kommentar: 'Mycket bra programmeringsförmåga', datum: '2024-12-15' },
+                { kurs: 'Programmering fortsättningskurs', betyg: 'G', kommentar: 'God förståelse för avancerade koncept', datum: '2025-02-20' }
+            ]
+        };
+
+        // Funktion för utloggning
+        logoutBtn.addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+        
+        // Funktion för att visa betyg baserat på vald kurs
+        kursValSelect.addEventListener('change', function() {
+            const valdKurs = this.value;
+            
+            // Rensa tabellen
+            senasteBetygenTableBody.innerHTML = '';
+            
+            // Om ingen kurs är vald, visa inget
+            if (!valdKurs) {
+                return;
+            }
+            
+            // Hämta betygsdata för den valda kursen
+            const betyg = betygData[valdKurs];
+            
+            // Om det finns betyg för kursen, visa dem
+            if (betyg && betyg.length > 0) {
+                betyg.forEach(function(item) {
+                    const row = document.createElement('tr');
+                    
+                    // Kurskolumn
+                    const kursCell = document.createElement('td');
+                    kursCell.textContent = item.kurs;
+                    kursCell.setAttribute('data-column', 'Kurs');
+                    row.appendChild(kursCell);
+                    
+                    // Betygskolumn med formatering
+                    const betygCell = document.createElement('td');
+                    betygCell.setAttribute('data-column', 'Betyg');
+                    const betygSpan = document.createElement('span');
+                    betygSpan.textContent = item.betyg;
+                    
+                    // Lägg till klasser baserat på betyg
+                    if (item.betyg === 'VG') {
+                        betygSpan.className = 'betyg-vg-cell';
+                    } else if (item.betyg === 'G') {
+                        betygSpan.className = 'betyg-g-cell';
+                    } else if (item.betyg === 'IG') {
+                        betygSpan.className = 'betyg-ig-cell';
+                    }
+                    
+                    betygCell.appendChild(betygSpan);
+                    row.appendChild(betygCell);
+                    
+                    // Kommentarskolumn
+                    const kommentarCell = document.createElement('td');
+                    kommentarCell.textContent = item.kommentar;
+                    kommentarCell.setAttribute('data-column', 'Kommentarer');
+                    row.appendChild(kommentarCell);
+                    
+                    // Datumkolumn
+                    const datumCell = document.createElement('td');
+                    datumCell.textContent = item.datum;
+                    datumCell.setAttribute('data-column', 'Datum');
+                    row.appendChild(datumCell);
+                    
+                    // Lägg till raden i tabellen
+                    senasteBetygenTableBody.appendChild(row);
+                });
+            } else {
+                // Om inga betyg finns för kursen
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.colSpan = 4;
+                cell.textContent = 'Inga betyg tillgängliga för den valda kursen.';
+                cell.style.textAlign = 'center';
+                row.appendChild(cell);
+                senasteBetygenTableBody.appendChild(row);
+            }
+        });
+        
+        // Kontrollera om det är mobilvy för tabeller och justera
+        function applyMobileTableAdjustments() {
+            if (window.innerWidth <= 768) {
+                // Mobil vy - inget behöver göras eftersom vi redan lagt till data-attribut
+            }
+        }
+        
+        // Kör justeringen på load och resize
+        applyMobileTableAdjustments();
+        window.addEventListener('resize', applyMobileTableAdjustments);
+    });
+</script>
+</body>
+</html>

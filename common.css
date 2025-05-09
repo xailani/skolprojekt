@@ -1,0 +1,231 @@
+/* Gemensamma stilar för alla sidor */
+
+/* Grundläggande stilinställningar för hela dokumentet */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  height: 100%;
+  -webkit-text-size-adjust: 100%; /* Förhindrar automatisk textskalning på iOS */
+}
+
+/* Halvgenomskinlig overlay som innehåller sidornas huvudinnehåll */
+.overlay {
+  background-color: rgba(255, 255, 255, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Huvudcontainer för innehåll */
+.container {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 15px;
+  text-align: center;
+  max-width: 600px;
+  width: 90%;
+  box-sizing: border-box;
+  margin-top: 30px; /* Lägg till margin-top för att skapa mer utrymme för logotypen */
+}
+
+/* Stilinställningar för huvudrubriker */
+h1 {
+  font-size: 32px;
+  color: #000000;
+  margin-bottom: 30px;
+}
+
+/* Stilinställningar för knappar */
+.btn {
+  width: 100%;
+  background-color: #2f54eb;
+  color: white;
+  padding: 14px; /* Ökad från 12px till 14px */
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none; /* Tar bort understrykningen från länkarna */
+  min-height: 48px; /* Ökad från 44px till 48px */
+  touch-action: manipulation; /* Bättre touch-hantering */
+}
+
+.btn:hover {
+  background-color: #1d39c4;
+}
+
+/* Responsiv design - anpassningar för olika skärmstorlekar */
+/* För alla enheter - bättre standarder för mobil-first approach */
+* {
+  box-sizing: border-box;
+}
+
+/* Logotypstil och placering */
+.logo-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+
+.logo-link {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.logo-link:hover {
+  transform: scale(1.05);
+}
+
+.logo-img {
+  width: 180px;
+  height: auto;
+}
+
+/* Högskolecentrum logotyp styling */
+.hogskolecentrum-logo {
+  position: absolute;
+  top: 95px; /* Ökad från 80px för att skapa mer avstånd från Arboga kommun logotypen */
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 90; /* Minskad från 100 för att säkerställa att den inte överlappar andra element */
+}
+
+.hogskolecentrum-logo img {
+  width: 450px; /* Minskad från 600px för att göra logotypen mindre */
+  max-width: 80%; /* Minskad från 90% för att göra logotypen mindre */
+  height: auto;
+}
+
+/* Responsiva anpassningar för surfplattor och mindre skärmar */
+@media (max-width: 768px) {
+  /* Container-anpassningar */
+  .container {
+    padding: 25px;
+    width: 95%;
+    margin: 20px auto;
+    margin-top: 40px; /* Öka marginalen för att skapa mer utrymme för logotypen */
+  }
+  
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  /* Fix för bakgrundsbilder på mobil */
+  .background-index,
+  .background-larare,
+  .background-student,
+  .background-omoss {
+    background-attachment: scroll;
+    background-position: center;
+  }
+  
+  /* Justering av overlay för mindre skärmar */
+  .overlay {
+    padding: 15px;
+    overflow-y: auto; /* Möjliggör scrollning om innehållet är för långt */
+    padding-top: 180px; /* Lägg till padding-top för att skapa utrymme för logotypen */
+  }
+  
+  /* Högskoledcentrum logotyp anpassning för mindre skärmar */
+  .hogskolecentrum-logo {
+    top: 90px; /* Justerad från 70px */
+  }
+  
+  .hogskolecentrum-logo img {
+    width: 380px; /* Minskad från 500px */
+  }
+}
+
+/* Responsiva anpassningar för mobiltelefoner */
+@media (max-width: 480px) {
+  /* FÖRBÄTTRADE MOBILA ANPASSNINGAR */
+  
+  /* Fix för bakgrundsbilder och min-height på mobil */
+  .background-index,
+  .background-larare,
+  .background-student,
+  .background-omoss {
+    background-attachment: scroll;
+    background-position: center;
+    min-height: 100vh;
+    height: auto;
+  }
+
+  /* Overlay-anpassning för att fungera bättre på mobil */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 170px 15px 15px; /* Ökad från 120px till 170px för att ge mer utrymme för logotypen */
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Logotyp-anpassning för mobil */
+  .logo-container {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 150;
+  }
+  
+  .logo-img {
+    width: 140px;
+  }
+  
+  /* Högskolecentrum logotypanpassning för mobil */
+  .hogskolecentrum-logo {
+    position: fixed; /* Ändrad från relative till fixed för att hålla den på plats */
+    top: 70px; /* Ökad från 60px */
+    z-index: 140; /* Ändrad från 150 till 140 för att säkerställa korrekt lagring */
+  }
+  
+  .hogskolecentrum-logo img {
+    width: 250px; /* Minskad från 300px */
+  }
+  
+  /* Container-anpassningar */
+  .container {
+    width: 95%;
+    max-width: 380px;
+    margin: auto;
+    padding: 20px 15px;
+    border-radius: 12px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+  }
+  
+  /* Förbättrade knappar för mobil */
+  .btn {
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 8px;
+    margin-top: 5px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Lärare Login</title>
+  <link rel="stylesheet" href="larare.css">
+</head>
+<body class="background-larare">
+
+  <div class="logo-container">
+    <a href="index.html" class="logo-link">
+      <img src="https://arboga.se/images/18.7a093a09185d2f4b3c791d8f/1675762304234/Arboga_vapen_krona_horisontell_svarttext_RGB.svg" alt="Arboga kommun" class="logo-img">
+    </a>
+  </div>
+
+  <!-- Högskolecentrum logotyp -->
+  <div class="hogskolecentrum-logo">
+    <img src="https://i.postimg.cc/6TJqjWX8/loggan-for-hogskolecentrum.png" alt="HÖGSKOLECENTRUM VUXENUTBILDNING I ARBOGA">
+  </div>
+
+  <div class="overlay">
+    <div class="login-box">
+      <img src="https://cdn-icons-png.freepik.com/512/12105/12105247.png?ga=GA1.1.1101570084.1746368925" alt="Lärare ikon" class="profile-img">
+
+      <div class="input-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" class="input-symbol">
+        <input type="text" placeholder="Användarnamn" id="username">
+      </div>
+
+      <div class="input-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/3064/3064155.png" class="input-symbol">
+        <input type="password" placeholder="Lösenord" id="password">
+      </div>
+
+
+      <button class="btn" onclick="login()">Logga in</button>
+    </div>
+  </div>
+
+  <script>
+    function login() {
+      var username = document.getElementById('username').value;
+      var password = document.getElementById('password').value;
+
+      // Här kan du lägga till autentisering om du vill
+      if (username && password) {
+        // Om användarnamn och lösenord är korrekt, navigera till lärarportalen
+        window.location.href = "lararportal.html"; // Här ska den nya lärarportal-sidan vara
+      } else {
+        alert('Var vänlig och fyll i både användarnamn och lösenord');
+      }
+    }
+  </script>
+</body>
+</html>

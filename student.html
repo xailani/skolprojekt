@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <!-- Meta-taggar och titel för dokumentet -->
+  <meta charset="UTF-8">
+  <title>Student Login</title>
+  <!-- Länk till extern CSS-fil för styling -->
+  <link rel="stylesheet" href="student.css">
+</head>
+<!-- Body-element med specifik bakgrundsklass för studentsidan -->
+<body class="background-student">
+
+  <!-- Logotyp-container med länk tillbaka till startsidan -->
+  <div class="logo-container">
+    <a href="index.html" class="logo-link">
+      <img src="https://arboga.se/images/18.7a093a09185d2f4b3c791d8f/1675762304234/Arboga_vapen_krona_horisontell_svarttext_RGB.svg" alt="Arboga kommun" class="logo-img">
+    </a>
+  </div>
+
+  <!-- Högskolecentrum logotyp -->
+  <div class="hogskolecentrum-logo">
+    <img src="https://i.postimg.cc/6TJqjWX8/loggan-for-hogskolecentrum.png" alt="HÖGSKOLECENTRUM VUXENUTBILDNING I ARBOGA">
+  </div>
+
+  <!-- Genomskinlig overlay som innehåller huvudinnehållet -->
+  <div class="overlay">
+    <!-- Login-box för studentens inloggningsuppgifter -->
+    <div class="login-box">
+      <!-- Studentikon ovanför inloggningsformuläret -->
+      <img src="https://cdn-icons-png.freepik.com/512/194/194931.png" alt="Student ikon" class="profile-img">
+      <!-- Användarnamn-inmatningsfält med ikon -->
+      <div class="input-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" class="input-symbol">
+        <input type="text" id="username" placeholder="Användarnamn">
+      </div>
+      <!-- Lösenord-inmatningsfält med ikon -->
+      <div class="input-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/3064/3064155.png" class="input-symbol">
+        <input type="password" id="password" placeholder="Lösenord">
+      </div>
+      
+      <!-- Inloggningsknapp -->
+      <button class="btn" id="loginBtn">Logga in</button>
+    </div>
+  </div>
+
+  <!-- JavaScript för att hantera inloggning -->
+   <!-- JavaScript för att hantera inloggning -->
+   <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hämta referens till inloggningsknappen
+      const loginBtn = document.getElementById('loginBtn');
+      
+      // Lägg till en klickhändelse på inloggningsknappen
+      loginBtn.addEventListener('click', function() {
+        // Hämta användarnamn och lösenord
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        
+        // Kontrollera att båda fälten är ifyllda
+        if (username && password) {
+          // Om användarnamn och lösenord är ifyllda, dirigera användaren till studentportal.html
+          window.location.href = "studentportal.html";
+        } else {
+          // Visa felmeddelande om något av fälten är tomma
+          alert('Var vänlig och fyll i både användarnamn och lösenord');
+        }
+      });
+      
+      // Möjliggör inloggning med Enter-tangenten
+      document.getElementById('password').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+          loginBtn.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
