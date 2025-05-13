@@ -5,7 +5,7 @@ body {
 }
  
 header {
-  background-color: #4338ca;
+  background-color: #2f54eb;
   color: white;
   padding: 1rem 2rem;
   display: flex;
@@ -25,7 +25,7 @@ header {
 }
  
 .logout-btn {
-  background-color: #6366f1;
+  background-color: #2f54eb;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -89,7 +89,7 @@ select, .comment-box {
 }
  
 .save-btn {
-  background-color: #6366f1;
+  background-color: #2f54eb;
   color: white;
   border: none;
   padding: 0.6rem 1.2rem;

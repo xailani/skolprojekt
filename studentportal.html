@@ -10,7 +10,7 @@
 <div class="header">
 <h1>Studentportal</h1>
 <div class="header-right">
-<span>Inloggad som: Student</span>
+<span id="inloggad-status">Inloggad som: Student</span>
 <button id="logoutBtn">Logga ut</button>
 </div>
 </div>
@@ -27,7 +27,7 @@ Visa schema
 <div class="elev-kurs-container">
 <div class="form-group">
 <label for="inloggad-namn">Elev</label>
-<input type="text" id="inloggad-namn" value="Sara Norén" readonly>
+<input type="text" id="inloggad-namn" readonly>
 </div>
 <div class="form-group">
 <label for="kurs-val">Kurs</label>
@@ -69,9 +69,18 @@ Visa schema
         const visaSchemaBtn = document.getElementById('visaSchemaBtn');
         const kursValSelect = document.getElementById('kurs-val');
         const senasteBetygenTableBody = document.getElementById('senasteBetygenTable').querySelector('tbody');
+        const inloggadNamnInput = document.getElementById('inloggad-namn');
+        const inloggadStatus = document.getElementById('inloggad-status');
         
-        // Betygsdata för varje kurs
-        const betygData = {
+        // Hämta den inloggade användarens namn från localStorage
+        const currentStudent = localStorage.getItem('currentStudent') || "Sara";
+        
+        // Visa användarnamnet i inloggningsfältet och statustexten
+        inloggadNamnInput.value = currentStudent;
+        inloggadStatus.textContent = `Inloggad som: ${currentStudent}`;
+        
+        // Betygsdata för Sara
+        const betygDataSara = {
             'system-anvandarvanlighet': [
                 { kurs: 'System- och användarvänlighet', betyg: 'VG', kommentar: 'Utmärkt förståelse för användbarhetsprinciper', datum: '2025-04-12' }
             ],
@@ -96,9 +105,38 @@ Visa schema
                 { kurs: 'Programmering fortsättningskurs', betyg: 'G', kommentar: 'God förståelse för avancerade koncept', datum: '2025-02-20' }
             ]
         };
+        
+        // Betygsdata för Kamyar
+        const betygDataKamyar = {
+            'system-anvandarvanlighet': [
+                { kurs: 'System- och användarvänlighet', betyg: 'G', kommentar: 'God förståelse för användbarhetsprinciper', datum: '2025-04-10' }
+            ],
+            'molntjanster': [
+                { kurs: 'Molntjänster', betyg: 'VG', kommentar: 'Utmärkt förståelse för molnbaserade tjänster och implementationer', datum: '2025-03-25' }
+            ],
+            'matematik': [
+                { kurs: 'Matematik 1', betyg: 'G', kommentar: 'God problemlösningsförmåga', datum: '2025-02-18' },
+                { kurs: 'Matematik 2', betyg: 'VG', kommentar: 'Utmärkt analysförmåga', datum: '2025-03-10' }
+            ],
+            'databaser': [
+                { kurs: 'Databaser', betyg: 'VG', kommentar: 'Excellent SQL-förståelse och databasdesign', datum: '2025-01-30' }
+            ],
+            'projektekonomi': [
+                { kurs: 'Projektekonomi', betyg: 'G', kommentar: 'Grundläggande kunskaper i projektekonomi', datum: '2025-04-15' }
+            ],
+            'arbetsmiljo-arbetsratt': [
+                { kurs: 'Arbetsmiljö och arbetsrätt', betyg: 'VG', kommentar: 'Djup förståelse för arbetsrättsliga frågor', datum: '2025-03-12' }
+            ],
+            'programmering': [
+                { kurs: 'Programmering grundkurs', betyg: 'VG', kommentar: 'Utmärkt programmeringsförmåga och problemlösning', datum: '2024-12-18' },
+                { kurs: 'Programmering fortsättningskurs', betyg: 'VG', kommentar: 'Mycket god förståelse för avancerade programmeringskoncept', datum: '2025-02-22' }
+            ]
+        };
 
         // Funktion för utloggning
         logoutBtn.addEventListener('click', function() {
+            // Rensa localStorage om det finns något sparat
+            localStorage.removeItem('currentStudent');
             window.location.href = 'index.html';
         });
         
@@ -113,6 +151,9 @@ Visa schema
             if (!valdKurs) {
                 return;
             }
+            
+            // Välj betygsdata baserat på inloggad användare
+            const betygData = currentStudent === "Sara" ? betygDataSara : betygDataKamyar;
             
             // Hämta betygsdata för den valda kursen
             const betyg = betygData[valdKurs];

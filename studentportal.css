@@ -6,7 +6,7 @@ body {
 }
  
 .header {
-    background-color: #3f51b5; /* Mörkblå header */
+    background-color: #2f54eb; /* Mörkblå header */
     color: white;
     padding: 1rem 2rem;
     display: flex;
@@ -36,7 +36,7 @@ body {
 }
  
 .header-right button {
-    background-color: #5c6bc0; /* Ljusare blå knapp */
+    background-color: #2f54eb; /* Ljusare blå knapp */
     color: white;
     border: none;
     padding: 0.5rem 1rem;

@@ -45,7 +45,6 @@
   </div>
 
   <!-- JavaScript för att hantera inloggning -->
-   <!-- JavaScript för att hantera inloggning -->
    <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Hämta referens till inloggningsknappen
@@ -57,13 +56,16 @@
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         
-        // Kontrollera att båda fälten är ifyllda
-        if (username && password) {
-          // Om användarnamn och lösenord är ifyllda, dirigera användaren till studentportal.html
+        // Kontrollera om användarnamn och lösenord matchar de fördefinierade värdena (case sensitive)
+        if ((username === "Sara" && password === "Admin") || 
+            (username === "Kamyar" && password === "Admin")) {
+          // Spara användarnamnet för att använda i studentportalen
+          localStorage.setItem('currentStudent', username);
+          // Om användarnamn och lösenord är korrekta, dirigera användaren till studentportal.html
           window.location.href = "studentportal.html";
         } else {
-          // Visa felmeddelande om något av fälten är tomma
-          alert('Var vänlig och fyll i både användarnamn och lösenord');
+          // Visa felmeddelande om inloggningsuppgifterna är felaktiga
+          alert('Felaktigt användarnamn eller lösenord');
         }
       });
       
