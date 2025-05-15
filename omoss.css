@@ -1,8 +1,7 @@
 /* Importera gemensamma stilar */
 @import url('common.css');
-
+ 
 /* Specifika stilar för omoss.html */
-
 /* Bakgrundsbild för om oss-sidan */
 .background-omoss {
   background: url('https://arboga.se/images/18.16aade8c1864b9deaa914d3/1709630385855/190430_Hogskolecentrum_2-1.webp') no-repeat center center fixed;
@@ -10,71 +9,99 @@
   position: relative;
   min-height: 100vh;
 }
-
+ 
+/* Överskriv container-stilar från common.css för om oss-sidan */
+.container {
+  max-width: 600px; /* Ökad bredd för att göra boxen större */
+  padding: 35px 45px 45px 45px; /* Ökad padding för att göra boxen större */
+}
+ 
 /* Stilinställningar för team-sektionen på Om oss-sidan */
 .team {
   display: flex;
-  gap: 40px;
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start; /* Ändrad till flex-start så att olika höjder hanteras bättre */
+  margin-top: 25px;
 }
-
+ 
+/* Stil för varje person */
 .person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  margin-bottom: 20px;
+  width: 30%;
 }
-
+ 
+/* Stil för bilder */
 .person img {
-  width: 120px;
+  width: 100px; /* Ökad bildstorlek från 80px till 100px */
+  height: 100px; /* Ökad bildstorlek från 80px till 100px */
   border-radius: 50%;
   margin-bottom: 10px;
+  object-fit: cover;
 }
-
+ 
+/* Stil för textinnehållet (namn, titel etc.) */
+.person-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+ 
+.person-info h3 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: #333;
+  font-size: 1.1em; /* Något större text */
+  font-weight: 600;
+}
+ 
+.person-info p {
+  margin-top: 0;
+  margin-bottom: 3px;
+  color: #666;
+  font-size: 0.85em;
+}
+ 
+/* Ta bort den tidigare regeln som dolde paragraferna */
+/* .person-info p:not(:first-of-type) {
+  display: none;
+} */
+ 
 /* Responsiva anpassningar för surfplattor och mindre skärmar */
 @media (max-width: 768px) {
-  /* Team på Om oss-sidan - anpassningar */
   .team {
-    gap: 30px;
+    justify-content: space-around;
+  }
+  .container {
+    padding: 30px;
+    max-width: 500px;
+  }
+  .person img {
+    width: 90px;
+    height: 90px;
   }
 }
-
+ 
 /* Responsiva anpassningar för mobiltelefoner */
 @media (max-width: 480px) {
-  /* Team-sektionen på Om oss-sidan - förbättrade mobila anpassningar */
   .team {
     flex-direction: column;
     align-items: center;
     gap: 25px;
     margin-top: 10px;
   }
-  
+  .container {
+    padding: 25px 20px;
+    max-width: 350px;
+  }
   .person {
     width: 100%;
-    max-width: 200px;
-    margin-bottom: 15px;
-    padding: 15px 10px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
   }
-  
   .person img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin-bottom: 10px;
-    border: 3px solid #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  }
-  
-  .person h3 {
-    margin: 10px 0 5px;
-    color: #333;
-  }
-  
-  .person p {
-    margin: 5px 0;
-    color: #666;
-    font-size: 14px;
+    width: 80px;
+    height: 80px;
   }
 }

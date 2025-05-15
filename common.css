@@ -46,7 +46,7 @@ h1 {
 /* Stilinställningar för knappar */
 .btn {
   width: 100%;
-  background-color: #2f54eb;
+  background-color: #0088ff;
   color: white;
   padding: 14px; /* Ökad från 12px till 14px */
   border: none;
@@ -59,7 +59,7 @@ h1 {
 }
 
 .btn:hover {
-  background-color: #1d39c4;
+  background-color: #0088ff;
 }
 
 /* Responsiv design - anpassningar för olika skärmstorlekar */
