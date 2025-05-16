@@ -18,6 +18,16 @@
     <img src="https://i.postimg.cc/6TJqjWX8/loggan-for-hogskolecentrum.png" alt="HÖGSKOLECENTRUM VUXENUTBILDNING I ARBOGA">
   </div>
 
+  <!-- Sidhuvud med hamburgermenyn -->
+  <header>
+    <!-- Hamburger-ikon som använder JavaScript för att visa/dölja menyn -->
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <!-- Dropdown-meny som visas när man klickar på hamburger-ikonen -->
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="omoss.html">Om oss</a>
+    </div>
+  </header>
+
   <div class="overlay">
     <div class="login-box">
       <img src="https://cdn-icons-png.freepik.com/512/12105/12105247.png?ga=GA1.1.1101570084.1746368925" alt="Lärare ikon" class="profile-img">
@@ -50,6 +60,12 @@
       } else {
         alert('Felaktigt användarnamn eller lösenord');
       }
+    }
+
+    // Funktion som visar eller döljer dropdown-menyn
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
     }
   </script>
 </body>
