@@ -8,7 +8,7 @@
 </head>
 <body
 class="background-student">
-  <div class="overlay"></div>
+<div class="overlay"></div>
 >
 <div class="header">
 <h1>Studentportal</h1>
@@ -17,7 +17,6 @@ class="background-student">
 <button id="logoutBtn">Logga ut</button>
 </div>
 </div>
- 
 <div class="container">
 <section class="betygsattning">
 <h2>Betygssättning</h2>
@@ -36,18 +35,16 @@ Visa schema
 <label for="kurs-val">Kurs</label>
 <select id="kurs-val">
 <option value="">Välj kurs</option>
-<option value="system-anvandarvanlighet">System- och användarvänlighet</option>
-<option value="molntjanster">Molntjänster</option>
-<option value="matematik">Matematik</option>
-<option value="databaser">Databaser</option>
-<option value="projektekonomi">Projektekonomi</option>
-<option value="arbetsmiljo-arbetsratt">Arbetsmiljö och arbetsrätt</option>
-<option value="programmering">Programmering</option>
+<option value="Molntjänster">Molntjänster</option>
+<option value="Matte">Matte</option>
+<option value="C++">C++</option>
+<option value="Cybersäkerhet">Cybersäkerhet</option>
+<option value="Nätverksteknik">Nätverksteknik</option>
+<option value="El-lära">El-lära</option>
 </select>
 </div>
 </div>
 </section>
- 
 <section class="senaste-betygen">
 <h2>Senaste betygen</h2>
 <table id="senasteBetygenTable">
@@ -65,7 +62,6 @@ Visa schema
 </table>
 </section>
 </div>
- 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const logoutBtn = document.getElementById('logoutBtn');
@@ -74,110 +70,87 @@ Visa schema
         const senasteBetygenTableBody = document.getElementById('senasteBetygenTable').querySelector('tbody');
         const inloggadNamnInput = document.getElementById('inloggad-namn');
         const inloggadStatus = document.getElementById('inloggad-status');
-        
         // Hämta den inloggade användarens namn från localStorage
         const currentStudent = localStorage.getItem('currentStudent') || "Sara";
-        
         // Visa användarnamnet i inloggningsfältet och statustexten
         inloggadNamnInput.value = currentStudent;
         inloggadStatus.textContent = `Inloggad som: ${currentStudent}`;
-        
         // Betygsdata för Sara
         const betygDataSara = {
-            'system-anvandarvanlighet': [
-                { kurs: 'System- och användarvänlighet', betyg: 'VG', kommentar: 'Utmärkt förståelse för användbarhetsprinciper', datum: '2025-04-12' }
+            'Molntjänster': [
+                { kurs: 'Molntjänster', betyg: 'VG', kommentar: 'Utmärkt förståelse', datum: '2025-04-12' }
             ],
-            'molntjanster': [
-                { kurs: 'Molntjänster', betyg: 'G', kommentar: 'God förståelse för molnbaserade tjänster', datum: '2025-03-22' }
+            'Matte': [
+                { kurs: 'Matte', betyg: 'G', kommentar: 'Genomgående godkänd nivå', datum: '2025-03-22' }
             ],
-            'matematik': [
-                { kurs: 'Matematik 1', betyg: 'VG', kommentar: 'Mycket bra problemlösningsförmåga', datum: '2025-02-15' },
-                { kurs: 'Matematik 2', betyg: 'G', kommentar: 'Genomgående godkänd nivå', datum: '2025-03-05' }
+            'C++': [
+                { kurs: 'C++', betyg: 'VG', kommentar: 'Mycket bra programeringsförmåga', datum: '2025-02-15' },
             ],
-            'databaser': [
-                { kurs: 'Databaser', betyg: 'VG', kommentar: 'Utmärkt förståelse för databasdesign', datum: '2025-01-28' }
+            'Cybersäkerhet': [
+                { kurs: 'Cybersäkerhet', betyg: 'VG', kommentar: 'Utmärkt förståelse för cybersäkerhet', datum: '2025-01-28' }
             ],
-            'projektekonomi': [
-                { kurs: 'Projektekonomi', betyg: 'IG', kommentar: 'Behöver komplettera kursmoment', datum: '2025-04-18' }
+            'Nätverksteknik': [
+                { kurs: 'Nätverksteknik', betyg: 'IG', kommentar: 'Behöver komplettera kursmoment', datum: '2025-04-18' }
             ],
-            'arbetsmiljo-arbetsratt': [
-                { kurs: 'Arbetsmiljö och arbetsrätt', betyg: 'G', kommentar: 'Godkänd kunskap om arbetsrättsliga frågor', datum: '2025-03-10' }
-            ],
-            'programmering': [
-                { kurs: 'Programmering grundkurs', betyg: 'VG', kommentar: 'Mycket bra programmeringsförmåga', datum: '2024-12-15' },
-                { kurs: 'Programmering fortsättningskurs', betyg: 'G', kommentar: 'God förståelse för avancerade koncept', datum: '2025-02-20' }
+            'El-lära': [
+                { kurs: 'El-lära', betyg: 'VG', kommentar: 'Mycket bra kunskaper', datum: '2024-12-15' },
             ]
         };
-        
         // Betygsdata för Kamyar
         const betygDataKamyar = {
-            'system-anvandarvanlighet': [
-                { kurs: 'System- och användarvänlighet', betyg: 'G', kommentar: 'God förståelse för användbarhetsprinciper', datum: '2025-04-10' }
+            'Molntjänster': [
+                { kurs: 'Molntjänster', betyg: 'G', kommentar: 'God förståelse för molnbaserade tjänster', datum: '2025-04-10' }
             ],
-            'molntjanster': [
-                { kurs: 'Molntjänster', betyg: 'VG', kommentar: 'Utmärkt förståelse för molnbaserade tjänster och implementationer', datum: '2025-03-25' }
+            'Matte': [
+                { kurs: 'Matte', betyg: 'VG', kommentar: 'Utmärkt förståelse', datum: '2025-03-25' }
             ],
-            'matematik': [
-                { kurs: 'Matematik 1', betyg: 'G', kommentar: 'God problemlösningsförmåga', datum: '2025-02-18' },
-                { kurs: 'Matematik 2', betyg: 'VG', kommentar: 'Utmärkt analysförmåga', datum: '2025-03-10' }
+            'C++': [
+                { kurs: 'C++', betyg: 'G', kommentar: 'Goda programmeringskunskaper', datum: '2025-02-18' },
             ],
-            'databaser': [
-                { kurs: 'Databaser', betyg: 'VG', kommentar: 'Excellent SQL-förståelse och databasdesign', datum: '2025-01-30' }
+            'Cybersäkerhet': [
+                { kurs: 'Cybersäkerhet', betyg: 'VG', kommentar: 'Utmärkta kunskaper i cybersäkerhet', datum: '2025-01-30' }
             ],
-            'projektekonomi': [
-                { kurs: 'Projektekonomi', betyg: 'G', kommentar: 'Grundläggande kunskaper i projektekonomi', datum: '2025-04-15' }
+            'Nätverksteknik': [
+                { kurs: 'Nätverksteknik', betyg: 'G', kommentar: 'Grundläggande kunskaper', datum: '2025-04-15' }
             ],
-            'arbetsmiljo-arbetsratt': [
-                { kurs: 'Arbetsmiljö och arbetsrätt', betyg: 'VG', kommentar: 'Djup förståelse för arbetsrättsliga frågor', datum: '2025-03-12' }
-            ],
-            'programmering': [
-                { kurs: 'Programmering grundkurs', betyg: 'VG', kommentar: 'Utmärkt programmeringsförmåga och problemlösning', datum: '2024-12-18' },
-                { kurs: 'Programmering fortsättningskurs', betyg: 'VG', kommentar: 'Mycket god förståelse för avancerade programmeringskoncept', datum: '2025-02-22' }
+            'El-lära': [
+                { kurs: 'El-lära', betyg: 'VG', kommentar: 'Djup förståelse för El-lära', datum: '2025-03-12' }
             ]
         };
-
+ 
         // Funktion för utloggning
         logoutBtn.addEventListener('click', function() {
             // Rensa localStorage om det finns något sparat
             localStorage.removeItem('currentStudent');
             window.location.href = 'index.html';
         });
-        
         // Funktion för att visa betyg baserat på vald kurs
         kursValSelect.addEventListener('change', function() {
             const valdKurs = this.value;
-            
             // Rensa tabellen
             senasteBetygenTableBody.innerHTML = '';
-            
             // Om ingen kurs är vald, visa inget
             if (!valdKurs) {
                 return;
             }
-            
             // Välj betygsdata baserat på inloggad användare
             const betygData = currentStudent === "Sara" ? betygDataSara : betygDataKamyar;
-            
             // Hämta betygsdata för den valda kursen
             const betyg = betygData[valdKurs];
-            
             // Om det finns betyg för kursen, visa dem
             if (betyg && betyg.length > 0) {
                 betyg.forEach(function(item) {
                     const row = document.createElement('tr');
-                    
                     // Kurskolumn
                     const kursCell = document.createElement('td');
                     kursCell.textContent = item.kurs;
                     kursCell.setAttribute('data-column', 'Kurs');
                     row.appendChild(kursCell);
-                    
                     // Betygskolumn med formatering
                     const betygCell = document.createElement('td');
                     betygCell.setAttribute('data-column', 'Betyg');
                     const betygSpan = document.createElement('span');
                     betygSpan.textContent = item.betyg;
-                    
                     // Lägg till klasser baserat på betyg
                     if (item.betyg === 'VG') {
                         betygSpan.className = 'betyg-vg-cell';
@@ -186,22 +159,18 @@ Visa schema
                     } else if (item.betyg === 'IG') {
                         betygSpan.className = 'betyg-ig-cell';
                     }
-                    
                     betygCell.appendChild(betygSpan);
                     row.appendChild(betygCell);
-                    
                     // Kommentarskolumn
                     const kommentarCell = document.createElement('td');
                     kommentarCell.textContent = item.kommentar;
                     kommentarCell.setAttribute('data-column', 'Kommentarer');
                     row.appendChild(kommentarCell);
-                    
                     // Datumkolumn
                     const datumCell = document.createElement('td');
                     datumCell.textContent = item.datum;
                     datumCell.setAttribute('data-column', 'Datum');
                     row.appendChild(datumCell);
-                    
                     // Lägg till raden i tabellen
                     senasteBetygenTableBody.appendChild(row);
                 });
@@ -216,14 +185,12 @@ Visa schema
                 senasteBetygenTableBody.appendChild(row);
             }
         });
-        
         // Kontrollera om det är mobilvy för tabeller och justera
         function applyMobileTableAdjustments() {
             if (window.innerWidth <= 768) {
                 // Mobil vy - inget behöver göras eftersom vi redan lagt till data-attribut
             }
         }
-        
         // Kör justeringen på load och resize
         applyMobileTableAdjustments();
         window.addEventListener('resize', applyMobileTableAdjustments);
